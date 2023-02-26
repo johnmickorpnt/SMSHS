@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/baseline_space_dashboard_24"
+        />
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_courses"
+            android:title="Courses"
+            android:icon="@drawable/baseline_menu_book_24"
+            />
+
+        <item
+            android:id="@+id/nav_attendance"
+            android:title="Attendance"
+            android:icon="@drawable/baseline_calendar_month_24"
+            />
+
+        <item
+            android:id="@+id/nav_grades"
+            android:title="Grades"
+            android:icon="@drawable/baseline_grade_24"
+            />
+    </group>
+
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_help"
+            android:title="Help"
+            android:icon="@drawable/baseline_help_outline_24"
+            />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout"
+            android:icon="@drawable/baseline_logout_24"
+            />
+    </group>
+
+
+
+</menu>
