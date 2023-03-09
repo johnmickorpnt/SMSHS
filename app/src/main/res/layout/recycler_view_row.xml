@@ -1,73 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardLayout"
+    layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_gravity="clip_vertical|center_horizontal"
+    android:layout_margin="10dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:shape="ring"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:shape="ring"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="20dp">
+        android:layout_height="match_parent"
+        android:background="#E96479"
+        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/courseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/status"
+            android:layout_alignParentStart="true"
+            android:text="Canvas Course Guide for Students"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/status" />
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#E96479"
-            android:padding="16dp"
-            android:paddingStart="16dp"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp">
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/rounded_textview"
+            android:gravity="center"
+            android:padding="5dp"
+            android:paddingStart="15dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:text="N/A"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/sectionTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CCG Students"
-                android:textColor="#F5E9CF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
+        <TextView
+            android:id="@+id/sectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/courseTitle"
+            android:layout_alignParentStart="true"
+            android:text="CCG Students"
+            android:textColor="#F5E9CF"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/courseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Canvas Course Guide for Students"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/status" />
-
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_textview"
-                android:gravity="center"
-                android:maxWidth="100dp"
-                android:minWidth="100dp"
-                android:padding="5dp"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="5dp"
-                android:paddingRight="15dp"
-                android:paddingBottom="5dp"
-                android:text="N/A"
-                android:textColor="#FFFFFF"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
