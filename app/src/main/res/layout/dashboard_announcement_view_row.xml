@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_border">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/announcementTitle"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toStartOf="@+id/dismissBtn"
+                android:layout_toEndOf="@+id/imageView3"
+                android:text="@string/view_announcement" />
+
+            <TextView
+                android:id="@+id/announcementTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toStartOf="@+id/dismissBtn"
+                android:layout_toEndOf="@+id/imageView3"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black"
+                android:backgroundTint="@color/teal_200"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/baseline_info_24"
+                tools:ignore="UseAppTint" />
+
+            <Button
+                android:id="@+id/dismissBtn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="5dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:hapticFeedbackEnabled="false"
+                app:icon="@drawable/baseline_close_24"
+                app:iconTint="#8E8E8E" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

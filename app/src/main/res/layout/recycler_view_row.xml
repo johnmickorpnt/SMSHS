@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="clip_vertical|center_horizontal"
-    android:layout_margin="10dp"
+    android:layout_margin="6dp"
     android:foreground="?attr/selectableItemBackground"
     android:shape="ring"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="6dp"
     app:cardElevation="4dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
         android:background="#E96479"
         android:padding="16dp"
         android:paddingStart="16dp"

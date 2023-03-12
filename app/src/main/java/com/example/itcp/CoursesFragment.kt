@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +15,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class CoursesFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var adapter: MyAdapter
     private lateinit var newRecyclerView: RecyclerView
@@ -38,12 +37,32 @@ class CoursesFragment : Fragment() {
         var layoutManager =  StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         newRecyclerView = view.findViewById(R.id.recycler_view)
         adapter = MyAdapter(courseArrayList)
+        adapter.setOnItemClickListener(object : MyAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val currTitle = title[position]
+
+                replaceFragment(CourseFragment())
+                Toast.makeText(context, "You clicked item $currTitle", Toast.LENGTH_SHORT).show()
+            }
+        })
         newRecyclerView.adapter = adapter
         newRecyclerView.isNestedScrollingEnabled = false
         newRecyclerView.layoutManager = layoutManager
 
     }
 
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = activity?.supportFragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        if (fragmentTransaction != null) {
+            fragmentTransaction.replace(R.id.frameLayout, fragment)
+        }
+
+        if (fragmentTransaction != null) {
+            fragmentTransaction.commit()
+        }
+    }
+    
     private fun dataInit(){
         courseArrayList = arrayListOf<CoursesModel>()
 
