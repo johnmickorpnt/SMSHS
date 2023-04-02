@@ -7,6 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.itcp.fragments.CoursesFragment
+import com.example.itcp.fragments.DashboardFragment
+import com.example.itcp.fragments.GradesFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +38,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_dashboard -> replaceFragment(DashboardFragment(), it.title.toString())
                 R.id.nav_courses -> replaceFragment(CoursesFragment(), it.title.toString())
                 R.id.nav_grades-> replaceFragment(GradesFragment(), it.title.toString())
-                R.id.nav_attendance -> replaceFragment(AttendanceFragment(), it.title.toString())
                 R.id.nav_help -> Toast.makeText(applicationContext, "Help", Toast.LENGTH_SHORT).show()
                 R.id.nav_logout-> promptLogout()
             }

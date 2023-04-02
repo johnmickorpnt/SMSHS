@@ -51,11 +51,11 @@
             android:layout_height="wrap_content"
             android:text="Password"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintStart_toStartOf="@+id/passText"
+            app:layout_constraintTop_toBottomOf="@+id/passText" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/passText"
             android:layout_width="280dp"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"

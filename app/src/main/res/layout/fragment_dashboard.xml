@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DashboardFragment">
+    tools:context=".fragments.DashboardFragment">
 
     <RelativeLayout
     android:layout_width="match_parent"
@@ -17,6 +17,8 @@
             android:layout_below="@+id/coursesTextView"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
         <TextView
@@ -25,25 +27,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
             android:text="Announcements"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dashboard_announcements_recycler_view"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="12dp"
             android:text="Courses"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dashboard_courses"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/textView8" />
+            android:layout_below="@id/textView8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

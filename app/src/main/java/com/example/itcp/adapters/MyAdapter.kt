@@ -1,4 +1,4 @@
-package com.example.itcp
+package com.example.itcp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itcp.R
+import com.example.itcp.models.CoursesModel
 
 class MyAdapter(private val courseList: ArrayList<CoursesModel>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
@@ -30,7 +32,8 @@ class MyAdapter(private val courseList: ArrayList<CoursesModel>) :
     }
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_row, parent,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.recycler_view_row, parent,
             false)
         return MyViewHolder(itemView, mListener)
     }
@@ -41,8 +44,8 @@ class MyAdapter(private val courseList: ArrayList<CoursesModel>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = courseList[position]
-        holder.courseName.text = currentItem.courseTitle
-        holder.statusName.text = currentItem.status
+        holder.courseName.text = currentItem.subj_name
+        holder.statusName.text = currentItem.grade
         holder.itemView.setOnClickListener {
             Toast.makeText(holder.itemView.context, "haha", Toast.LENGTH_SHORT).show()
         }
