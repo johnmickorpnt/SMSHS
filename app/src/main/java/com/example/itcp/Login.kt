@@ -67,8 +67,6 @@ class Login : AppCompatActivity() {
     private fun loginProcess(username: String, password: String, progressDialog : ProgressDialog) {
         val retrofit = RetrofitClientInstance(username, password).getRetrofitInstance()
         val api = retrofit.create(InterfaceAPI::class.java)
-        val _isLoggedIn = MutableLiveData<Boolean>()
-        val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
         api.login(username, password).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -84,6 +82,10 @@ class Login : AppCompatActivity() {
                 } else {
                     val errorBody = response.body()?.msg
                     Log.d("J COLE", "ERROR: $errorBody")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        progressDialog.dismiss()
+                        Toast.makeText(baseContext, "Invalid username/password", Toast.LENGTH_LONG).show()
+                    }, 500)
                 }
                 Log.d("J COLE", response.code().toString() + " " + response.body()?.msg.toString())
             }
@@ -98,6 +100,7 @@ class Login : AppCompatActivity() {
     fun goToMainActivity(progressDialog : ProgressDialog){
         Handler(Looper.getMainLooper()).postDelayed({
             progressDialog.dismiss()
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 1000)

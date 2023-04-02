@@ -13,6 +13,7 @@ class CourseAdapter(private val courseList: ArrayList<CoursesModel>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val courseName : TextView = itemView.findViewById(R.id.courseTitle)
+        val code : TextView = itemView.findViewById(R.id.dept_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -29,5 +30,6 @@ class CourseAdapter(private val courseList: ArrayList<CoursesModel>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = courseList[position]
         holder.courseName.text = currentItem.subj_name
+        holder.code.text = currentItem.subj_code
     }
 }

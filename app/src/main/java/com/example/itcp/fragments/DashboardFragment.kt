@@ -2,6 +2,7 @@ package com.example.itcp.fragments
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -18,17 +19,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.itcp.api_files.InterfaceAPI
 import com.example.itcp.R
+import com.example.itcp.SubjectActivity
 import com.example.itcp.api_files.RetrofitClientInstance
 import com.example.itcp.data_classes.User
 import com.example.itcp.adapters.AnnouncementsAdapter
 import com.example.itcp.adapters.MyAdapter
+import com.example.itcp.adapters.OnItemClickListener
 import com.example.itcp.models.AnnouncementModel
 import com.example.itcp.models.CoursesModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), OnItemClickListener {
     private lateinit var announcementsAdapter: AnnouncementsAdapter
     private lateinit var announcementList : ArrayList<AnnouncementModel>
     private lateinit var announcementRecyclerView : RecyclerView
@@ -37,7 +40,6 @@ class DashboardFragment : Fragment() {
     private lateinit var newRecyclerView: RecyclerView
     private lateinit var courseArrayList : ArrayList<CoursesModel>
 
-    private lateinit var title : Array<String>
     private lateinit var user : User
 
 
@@ -64,7 +66,6 @@ class DashboardFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             progressDialog.dismiss()
         }, 500)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -109,13 +110,7 @@ class DashboardFragment : Fragment() {
     fun makeCourses(courses : ArrayList<CoursesModel>){
         courseArrayList = courses
         var doubleLayoutManager =  StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        adapter = MyAdapter(courseArrayList)
-        adapter.setOnItemClickListener(object : MyAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                val currTitle = title[position]
-                Toast.makeText(context, "You clicked item $currTitle", Toast.LENGTH_SHORT).show()
-            }
-        })
+        adapter = MyAdapter(courseArrayList, this)
         newRecyclerView.adapter = adapter
         newRecyclerView.isNestedScrollingEnabled = false
         newRecyclerView.layoutManager = doubleLayoutManager
@@ -158,5 +153,11 @@ class DashboardFragment : Fragment() {
                 Log.e("J COLE", t.localizedMessage)
             }
         })
+    }
+
+    override fun onItemClick(itemId: String) {
+        val intent = Intent(activity, SubjectActivity::class.java)
+        intent.putExtra("ITEM_ID", itemId)
+        startActivity(intent)
     }
 }

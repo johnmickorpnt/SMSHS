@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:background="#E96479"
         android:padding="16dp"
         android:paddingStart="16dp"
@@ -32,23 +32,25 @@
             android:id="@+id/courseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/code_title"
+            android:layout_below="@+id/grade_value"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            android:maxLines="2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20sp"
             android:text="Canvas Course Guide for Students"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grade_value" />
 
         <TextView
-            android:id="@+id/code_title"
+            android:id="@+id/grade_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:background="@drawable/rounded_textview"
             android:gravity="center"
             android:padding="5dp"
@@ -60,22 +62,10 @@
             android:paddingBottom="5dp"
             android:text="N/A"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="34sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/dept_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/courseTitle"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
-            android:text="CCG Students"
-            android:textColor="#F5E9CF"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -26,10 +26,11 @@ data class User(
             return sharedPref.getString("token", null)
         }
 
-        fun getLoginCredentialsWithLogin(context: Context): String?{
-            val sharedPref = context.getSharedPreferences("login", Context.MODE_PRIVATE)
-
-            return sharedPref.getString("token", null)
+        fun destroyCredentials(context: Context){
+            val sharedPrefs = context.getSharedPreferences("login", Context.MODE_PRIVATE)
+            val editor = sharedPrefs.edit()
+            editor.remove("token")
+            editor.apply()
         }
 
         @RequiresApi(Build.VERSION_CODES.O)
