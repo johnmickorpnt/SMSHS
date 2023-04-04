@@ -14,10 +14,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itcp.R
 import com.example.itcp.models.CoursesModel
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 import kotlin.random.Random
 import android.content.Context
+import com.squareup.picasso.*
+import okhttp3.OkHttpClient
 
 interface OnItemClickListener {
     fun onItemClick(itemId: String)
@@ -52,7 +52,7 @@ class MyAdapter(private val courseList: ArrayList<CoursesModel>,
         holder.courseName.text = currentItem.subj_name
         holder.codeTextView.text = currentItem.subj_code
         holder.deptTitle.text = if(currentItem.dept != "") currentItem.dept else "N/A"
-        val imageUrl = "http://sanmateoshs.infinityfreeapp.com/imgsubject/$imgFile"
+        val imageUrl = "https://smshs-capstone.000webhostapp.com/imgsubject/$imgFile"
         val drawables = arrayOf(R.drawable.crit, R.drawable.stats, R.drawable.ep1,
             R.drawable.twentyfirstst, R.drawable.fil1)
         Log.d("J COLE", imageUrl)
@@ -62,19 +62,24 @@ class MyAdapter(private val courseList: ArrayList<CoursesModel>,
         holder.bg.setBackgroundColor(Color.parseColor(colors[randomNumberInRange]))
         holder.bind(currentItem, listener)
         holder.cover.setBackgroundResource(drawables[randomNumberInRange])
-//        Picasso.get().load(imageUrl).into(object : com.squareup.picasso.Target {
-//            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-//                holder.cover.background = BitmapDrawable(holder.itemView.resources, bitmap)
-//            }
-//
-//            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-//                Log.e("J COLE", e.toString())
-//            }
-//
-//            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-//                Log.e("J COLE", imageUrl)
-//            }
-//        })
+
+        Picasso.get()
+            .load(imageUrl)
+            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .into(object : com.squareup.picasso.Target {
+            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                holder.cover.background = BitmapDrawable(holder.itemView.resources, bitmap)
+            }
+
+            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                Log.e("J COLE", e.toString())
+            }
+
+            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                Log.d("J COLE", imageUrl)
+            }
+        })
     }
 
     override fun getItemCount(): Int {

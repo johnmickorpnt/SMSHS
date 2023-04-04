@@ -1,7 +1,10 @@
 package com.example.itcp
 
 import android.app.ProgressDialog
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +23,9 @@ import com.example.itcp.api_files.RetrofitClientInstance
 import com.example.itcp.data_classes.User
 import com.example.itcp.models.CoursesModel
 import com.example.itcp.models.ModuleModel
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,6 +44,8 @@ class SubjectActivity : AppCompatActivity() {
     private lateinit var modulesRecyclerView: RecyclerView
     private lateinit var progressDialog : ProgressDialog
     private lateinit var courseHeader : RelativeLayout
+    private lateinit var courseContainer : RelativeLayout
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,14 +131,14 @@ class SubjectActivity : AppCompatActivity() {
         modulesRecyclerView.isNestedScrollingEnabled = false
         modulesRecyclerView.layoutManager = singleLayoutManager
         courseHeader = findViewById(R.id.courseIntroLayout)
+        courseContainer = findViewById(R.id.courseIntroContainer)
 
         val random = Random
         val colors = arrayOf("#7D5A50", "#FF2E63", "#B83B5E", "#3F72AF", "#967E76")
         val randomNumberInRange = random.nextInt(0, 4) // generates a random number between 5 and 14
-        courseHeader.setBackgroundColor(Color.parseColor(colors[randomNumberInRange]))
-        Handler(Looper.getMainLooper()).postDelayed({
-            progressDialog.dismiss()
-        }, 500)
+        courseContainer.setBackgroundColor(Color.parseColor(colors[randomNumberInRange]))
+
+
 
 
     }
@@ -146,6 +154,29 @@ class SubjectActivity : AppCompatActivity() {
         codeLabel.text = subject.subj_code
         deptLabel.text = if(subject.dept != "") subject.dept else "N/A"
         desc.text = subject.subj_desc
+        val imgFile = course.subj_image.replace(" ", "%20")
+        val imageUrl = "https://smshs-capstone.000webhostapp.com/imgsubject/$imgFile"
+        Picasso.get()
+            .load(imageUrl)
+            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .into(object : com.squareup.picasso.Target {
+            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                courseHeader.background = BitmapDrawable(resources, bitmap)
+            }
+
+            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                Log.e("J COLE", e.toString())
+            }
+
+            override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                Log.d("J COLE", imageUrl)
+            }
+        })
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressDialog.dismiss()
+        }, 500)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

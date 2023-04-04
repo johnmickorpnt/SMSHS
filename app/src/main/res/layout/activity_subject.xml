@@ -13,7 +13,7 @@
             android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/courseIntroLayout"
+            android:layout_below="@id/courseIntroContainer"
             android:paddingStart="15dp"
             android:paddingTop="15dp"
             android:paddingEnd="15dp"
@@ -47,26 +47,23 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/courseIntroLayout"
+            android:id="@+id/courseIntroContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:background="@color/teal_200"
-            android:foregroundTint="#FF1515"
-            android:paddingBottom="50dp">
+            android:foregroundTint="#FF1515">
 
-            <TextView
-                android:id="@+id/mainCourseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/backBtn"
+            <RelativeLayout
+                android:id="@+id/courseIntroLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="50dp"
-                android:gravity="center"
-                android:text="Multimedia"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_alignParentRight="true"
+                android:alpha="0.5">
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/code_label"
@@ -80,6 +77,20 @@
                 android:textAllCaps="true"
                 android:textColor="#FDFDFD"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/mainCourseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="64dp"
+                android:gravity="center"
+                android:text="Multimedia"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
