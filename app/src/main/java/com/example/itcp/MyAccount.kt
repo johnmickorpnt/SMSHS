@@ -1,5 +1,6 @@
 package com.example.itcp
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBar
+import androidx.core.content.ContextCompat
 import com.example.itcp.api_files.InterfaceAPI
 import com.example.itcp.api_files.RetrofitClientInstance
 import com.example.itcp.data_classes.User
@@ -34,7 +37,10 @@ class MyAccount : AppCompatActivity() {
         dobText = findViewById(R.id.date_of_birth_text)
         addressText = findViewById(R.id.addressText)
         contactText = findViewById(R.id.contactText)
+        val actionBar: ActionBar? = supportActionBar
 
+        // set the background color
+        actionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.link_color)))
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
