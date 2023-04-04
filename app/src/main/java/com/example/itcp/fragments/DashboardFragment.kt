@@ -41,7 +41,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     private lateinit var courseArrayList : ArrayList<CoursesModel>
 
     private lateinit var user : User
-
+    private lateinit var progressDialog : ProgressDialog
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -55,7 +55,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val progressDialog = ProgressDialog(requireContext())
+        progressDialog = ProgressDialog(requireContext())
         dataInit(requireContext())
         progressDialog.setMessage("Loading...")
         progressDialog.setCancelable(false)
@@ -63,9 +63,6 @@ class DashboardFragment : Fragment(), OnItemClickListener {
 
         announcementRecyclerView = view.findViewById(R.id.dashboard_announcements_recycler_view)
         newRecyclerView = view.findViewById(R.id.dashboard_courses)
-        Handler(Looper.getMainLooper()).postDelayed({
-            progressDialog.dismiss()
-        }, 500)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -91,7 +88,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                 }
             }
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.e("J COLE", t.localizedMessage)
+                Log.e("J COLE", "USER: "+ t.localizedMessage)
             }
         })
     }
@@ -114,6 +111,9 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         newRecyclerView.adapter = adapter
         newRecyclerView.isNestedScrollingEnabled = false
         newRecyclerView.layoutManager = doubleLayoutManager
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressDialog.dismiss()
+        }, 500)
     }
 
     fun fetchData(currUser : User, api : InterfaceAPI, token : String){
@@ -134,7 +134,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
             }
 
             override fun onFailure(call: Call<ArrayList<AnnouncementModel>>, t: Throwable) {
-                Log.e("J COLE", t.localizedMessage)
+                Log.e("J COLE", "ANNOUNCEMENTS:"+t.localizedMessage)
             }
         })
         courseCall.enqueue(object : Callback<ArrayList<CoursesModel>>{
@@ -150,7 +150,7 @@ class DashboardFragment : Fragment(), OnItemClickListener {
                 }
             }
             override fun onFailure(call: Call<ArrayList<CoursesModel>>, t: Throwable) {
-                Log.e("J COLE", t.localizedMessage)
+                Log.e("J COLE", "COURSES: "+t.localizedMessage)
             }
         })
     }
@@ -160,4 +160,5 @@ class DashboardFragment : Fragment(), OnItemClickListener {
         intent.putExtra("ITEM_ID", itemId)
         startActivity(intent)
     }
+
 }

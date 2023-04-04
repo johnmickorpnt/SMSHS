@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             if (!checkForNulls()) return@setOnClickListener
-            progressDialog.setMessage("Loggin In...")
+            progressDialog.setMessage("Logging In...")
             progressDialog.setCancelable(false)
             progressDialog.show()
             val process = loginProcess(
@@ -104,6 +104,10 @@ class Login : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 1000)
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
 

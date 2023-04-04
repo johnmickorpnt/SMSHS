@@ -7,7 +7,7 @@ import java.util.*
 
 data class User(
     val id : Int, val name : String, val lrn : String,
-    val grade : Int, val section : String, val Strand : String,
+    val grade : Int, val section : String, val strand : String,
     val strandId : Int, val gender : String, val enrolledDate : String,
     val address : String, val phone : String, val dob : String,
     val username: String, val password: String

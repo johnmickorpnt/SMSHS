@@ -13,7 +13,7 @@
             android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/courseHeader"
+            android:layout_below="@id/courseIntroLayout"
             android:paddingStart="15dp"
             android:paddingTop="15dp"
             android:paddingEnd="15dp"
@@ -23,7 +23,7 @@
                 android:id="@+id/homeViewBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#C8C7C7"
+                android:background="#FBFBFB"
                 android:padding="20dp">
 
                 <TextView
@@ -47,11 +47,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/courseHeader"
+            android:id="@+id/courseIntroLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/teal_200"
-            android:backgroundTint="@color/teal_700"
             android:foregroundTint="#FF1515"
             android:paddingBottom="50dp">
 
@@ -65,6 +64,7 @@
                 android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:text="Multimedia"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -78,6 +78,7 @@
                 android:gravity="center"
                 android:text="WATP"
                 android:textAllCaps="true"
+                android:textColor="#FDFDFD"
                 android:textSize="16sp" />
 
         </RelativeLayout>
@@ -86,24 +87,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeBtn"
-            android:padding="15dp">
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textView9"
                 android:layout_marginStart="@dimen/text_margin"
-                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/text_margin"
                 android:layout_marginBottom="@dimen/text_margin"
                 android:background="#FFFFFF"
-                android:text="@string/large_text" />
+                android:text="@string/large_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:text="Available Modules"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/downloads_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/description" />
+                android:layout_below="@id/textView6"
+                android:layout_marginTop="16dp" />
         </RelativeLayout>
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

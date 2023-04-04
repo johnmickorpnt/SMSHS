@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardLayout"
     layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="240dp"
     android:layout_gravity="clip_vertical|center_horizontal"
     android:layout_margin="6dp"
     android:foreground="?attr/selectableItemBackground"
@@ -17,28 +18,38 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout
+        android:id="@+id/row_background"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="240dp"
         android:background="#E96479"
-        android:padding="16dp"
-        android:paddingStart="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingRight="16dp"
         android:paddingBottom="16dp">
+
+        <RelativeLayout
+            android:id="@+id/img_container"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:alpha="0.3"
+            android:background="#FBFBFB" />
 
         <TextView
             android:id="@+id/courseTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/code_title"
+            android:layout_height="52dp"
+            android:layout_below="@+id/img_container"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
+            android:inputType="textMultiLine|textCapWords"
             android:maxLines="2"
-            android:text="Canvas Course Guide for Students"
+            android:text="Komunikasyon at pananaliksik sa Wika at Kulturang Pilipino "
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="#F6F1F1"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -49,6 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/rounded_textview"
             android:gravity="center"
             android:padding="5dp"
@@ -62,7 +75,8 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true" />
 
         <TextView
             android:id="@+id/dept_title"
@@ -70,12 +84,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/courseTitle"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
             android:text="CCG Students"
             android:textColor="#F5E9CF"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseTitle" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

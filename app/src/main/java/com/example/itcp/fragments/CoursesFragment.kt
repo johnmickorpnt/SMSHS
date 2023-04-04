@@ -35,6 +35,7 @@ class CoursesFragment : Fragment(), OnItemClickListener {
     private lateinit var courseArrayList : ArrayList<CoursesModel>
     private lateinit var title : Array<String>
     private lateinit var user : User
+    private lateinit var progressDialog : ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,16 +47,12 @@ class CoursesFragment : Fragment(), OnItemClickListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val progressDialog = ProgressDialog(requireContext())
+        progressDialog = ProgressDialog(requireContext())
         dataInit(requireContext())
         progressDialog.setMessage("Loading...")
         progressDialog.setCancelable(false)
         progressDialog.show()
         newRecyclerView = view.findViewById(R.id.recycler_view)
-        Handler(Looper.getMainLooper()).postDelayed({
-            progressDialog.dismiss()
-        }, 500)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -113,6 +110,9 @@ class CoursesFragment : Fragment(), OnItemClickListener {
         newRecyclerView.adapter = adapter
         newRecyclerView.isNestedScrollingEnabled = false
         newRecyclerView.layoutManager = doubleLayoutManager
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressDialog.dismiss()
+        }, 500)
     }
 
     override fun onItemClick(itemId: String) {

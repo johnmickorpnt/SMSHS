@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="12dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -27,7 +28,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
-            android:text="Courses"
+            android:text="Enrolled Subjects"
             android:textSize="24sp" />
 
     </RelativeLayout>

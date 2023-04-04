@@ -15,7 +15,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/user_placeholder" />
+        android:src="@drawable/user" />
 
     <TextView
         android:id="@+id/userName"
@@ -31,5 +31,11 @@
         android:layout_height="wrap_content"
         android:text="john.micko.rapanot@gmail.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LRN" />
 
 </LinearLayout>

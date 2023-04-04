@@ -35,7 +35,7 @@ class AnnouncementsFragment : Fragment() {
     private lateinit var courseArrayList : ArrayList<CoursesModel>
 
     private lateinit var user : User
-
+    private lateinit var progressDialog : ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,16 +46,13 @@ class AnnouncementsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val progressDialog = ProgressDialog(requireContext())
+        progressDialog = ProgressDialog(requireContext())
         dataInit(requireContext())
         progressDialog.setMessage("Loading...")
         progressDialog.setCancelable(false)
         progressDialog.show()
 
         announcementRecyclerView = view.findViewById(R.id.announcementRecyclerView)
-        Handler(Looper.getMainLooper()).postDelayed({
-            progressDialog.dismiss()
-        }, 500)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -116,5 +113,8 @@ class AnnouncementsFragment : Fragment() {
         announcementRecyclerView.adapter = announcementsAdapter
         announcementRecyclerView.isNestedScrollingEnabled = false
         announcementRecyclerView.layoutManager = singleLayoutManager
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressDialog.dismiss()
+        }, 500)
     }
 }

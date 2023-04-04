@@ -13,7 +13,7 @@
             android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/courseHeader"
+            android:layout_below="@id/courseIntroLayout"
             android:paddingStart="15dp"
             android:paddingTop="15dp"
             android:paddingEnd="15dp"
@@ -47,7 +47,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/courseHeader"
+            android:id="@+id/courseIntroLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/teal_200"

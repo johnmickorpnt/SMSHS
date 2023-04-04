@@ -1,26 +1,29 @@
 package com.example.itcp
 
+import android.app.ProgressDialog
+import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.MenuItem
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.itcp.adapters.AnnouncementsAdapter
 import com.example.itcp.adapters.ModulesAdapter
-import com.example.itcp.adapters.MyAdapter
 import com.example.itcp.api_files.InterfaceAPI
 import com.example.itcp.api_files.RetrofitClientInstance
 import com.example.itcp.data_classes.User
 import com.example.itcp.models.CoursesModel
 import com.example.itcp.models.ModuleModel
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.random.Random
 
 class SubjectActivity : AppCompatActivity() {
     private lateinit var user : User
@@ -31,13 +34,20 @@ class SubjectActivity : AppCompatActivity() {
     private lateinit var desc : TextView
 
     private lateinit var modulesAdapter: ModulesAdapter
-    private lateinit var nameList : List<String>
+
     private lateinit var modulesRecyclerView: RecyclerView
+    private lateinit var progressDialog : ProgressDialog
+    private lateinit var courseHeader : RelativeLayout
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Loading...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
         val extras = intent.extras
         val value = extras?.getString("ITEM_ID")
         if (value != null) {
@@ -112,6 +122,17 @@ class SubjectActivity : AppCompatActivity() {
 
         modulesRecyclerView.isNestedScrollingEnabled = false
         modulesRecyclerView.layoutManager = singleLayoutManager
+        courseHeader = findViewById(R.id.courseIntroLayout)
+
+        val random = Random
+        val colors = arrayOf("#7D5A50", "#FF2E63", "#B83B5E", "#3F72AF", "#967E76")
+        val randomNumberInRange = random.nextInt(0, 4) // generates a random number between 5 and 14
+        courseHeader.setBackgroundColor(Color.parseColor(colors[randomNumberInRange]))
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressDialog.dismiss()
+        }, 500)
+
+
     }
 
     private fun makeCourse(course: CoursesModel){
@@ -123,7 +144,7 @@ class SubjectActivity : AppCompatActivity() {
 
         courseTitle.text = subject.subj_name
         codeLabel.text = subject.subj_code
-        deptLabel.text = subject.dept
+        deptLabel.text = if(subject.dept != "") subject.dept else "N/A"
         desc.text = subject.subj_desc
     }
 

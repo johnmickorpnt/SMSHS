@@ -7,8 +7,9 @@
     tools:context=".fragments.DashboardFragment">
 
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dashboard_announcements_recycler_view"
@@ -39,7 +40,7 @@
             android:layout_below="@id/dashboard_announcements_recycler_view"
             android:layout_marginStart="10dp"
             android:layout_marginTop="12dp"
-            android:text="Courses"
+            android:text="Subjects"
             android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView

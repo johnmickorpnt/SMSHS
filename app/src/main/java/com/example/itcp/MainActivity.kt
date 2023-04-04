@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +13,9 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.itcp.api_files.InterfaceAPI
@@ -22,7 +25,6 @@ import com.example.itcp.fragments.AnnouncementsFragment
 import com.example.itcp.fragments.CoursesFragment
 import com.example.itcp.fragments.DashboardFragment
 import com.example.itcp.fragments.GradesFragment
-import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,7 +42,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // get reference to the support action bar
 
+        val actionBar: ActionBar? = supportActionBar
+
+        // set the background color
+        actionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.link_color)))
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 
@@ -54,14 +61,28 @@ class MainActivity : AppCompatActivity() {
 
             it.isChecked = true
 
-            when(it.itemId){
-                R.id.nav_dashboard -> replaceFragment(DashboardFragment(), it.title.toString())
-                R.id.nav_courses -> replaceFragment(CoursesFragment(), it.title.toString())
-                R.id.nav_grades-> replaceFragment(GradesFragment(), it.title.toString())
-                R.id.nav_announcements-> replaceFragment(AnnouncementsFragment(), it.title.toString())
-                R.id.nav_my_account -> goToActivity(MyAccount())
-                R.id.nav_logout-> promptLogout(this)
+            val fragment = when(it.itemId) {
+                R.id.nav_dashboard -> DashboardFragment()
+                R.id.nav_courses -> CoursesFragment()
+                R.id.nav_grades -> GradesFragment()
+                R.id.nav_announcements -> AnnouncementsFragment()
+                else -> null
             }
+
+            if (fragment != null) {
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.frameLayout)
+
+                if (currentFragment?.javaClass != fragment.javaClass) {
+                    replaceFragment(fragment, it.title.toString())
+                }
+            } else {
+                when(it.itemId) {
+                    R.id.nav_my_account -> goToActivity(MyAccount())
+                    R.id.nav_logout -> promptLogout(this)
+                }
+            }
+
+
             true
         }
 
@@ -75,7 +96,9 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage("Are you sure you want to Logout?")
         builder.setPositiveButton("OK") { dialog, which ->
             User.destroyCredentials(context)
-            goToActivity(Login())
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()
         }
         builder.setNegativeButton("Cancel") { dialog, which ->
             dialog.dismiss()
@@ -117,17 +140,17 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+
     fun init(user : User){
         headerUsername = navView.getHeaderView(0).findViewById(R.id.userName)
         headerLrn = navView.getHeaderView(0).findViewById(R.id.header_lrn)
 
-        headerUsername.text = user.name
-        headerLrn.text = user.lrn
+        headerUsername.text = "Hi " + user.name + "!"
+        headerLrn.text = user.lrn ?: "12378125679"
     }
     private fun goToActivity(activity: Activity){
         val intent = Intent(this, activity::class.java)
         startActivity(intent)
-        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -32,7 +32,7 @@
             android:padding="24dp">
 
             <EditText
-                android:id="@+id/lrnText"
+                android:id="@+id/lrnTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_below="@+id/nameText"
@@ -47,7 +47,7 @@
                 android:id="@+id/strandText"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_below="@+id/lrnText"
+                android:layout_below="@+id/lrnTextView"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="12dp"
