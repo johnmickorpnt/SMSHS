@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClientInstance(username : String, password: String) {
-    private val BASE_URL = "http://10.0.2.2/smshs_api/"
+    private val BASE_URL = "https://smshs-capstone.000webhostapp.com/"
     val client = OkHttpClient.Builder()
         .addInterceptor(BasicAuthInterceptor(username, password))
         .build()
